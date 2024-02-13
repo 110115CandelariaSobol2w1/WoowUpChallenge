@@ -18,8 +18,9 @@ namespace Tests
             string testName = "Candelaria Sobol";
             string testEmail = "candelariasobol@example.com";
 
+            Usuario usuario = new Usuario();
             // Act
-            Usuario.CreateUser(testName, testEmail);
+            usuario.CreateUser(testName, testEmail);
 
             // Assert
             Assert.IsTrue(Usuario.registeredUsers.Any(u => u.Nombre == testName && u.Email == testEmail));
@@ -32,10 +33,12 @@ namespace Tests
             string testName = "Candelaria Sobol";
             string testEmail = "candelariasobol@example.com";
 
-            Usuario.CreateUser(testName, testEmail);
+            Usuario usuario = new Usuario();
+
+            usuario.CreateUser(testName, testEmail);
 
             // Act
-            Usuario.CreateUser(testName, testEmail);
+            usuario.CreateUser(testName, testEmail);
 
             // Assert
             Assert.AreEqual(1, Usuario.registeredUsers.Count(u => u.Nombre == testName && u.Email == testEmail));
@@ -75,9 +78,10 @@ namespace Tests
         public void ObtenerAlertasNoLeidasNoExpiradas_Should_Return_Correct_Alerts()
         {
             // Arrange
-            RegistroTemas.RegistrarTemas("Tema1");
-            RegistroTemas.RegistrarTemas("Tema2");
-            RegistroTemas.RegistrarTemas("Tema3");
+            RegistroTemas nuevoTema = new RegistroTemas();
+            nuevoTema.RegistrarTemas("Tema1");
+            nuevoTema.RegistrarTemas("Tema2");
+            nuevoTema.RegistrarTemas("Tema3");
 
             Usuario usuario = new Usuario();
             Alerta alerta1 = new Alerta("Tema1", "Mensaje1", TipoAlerta.Informativa, DateTime.Now);

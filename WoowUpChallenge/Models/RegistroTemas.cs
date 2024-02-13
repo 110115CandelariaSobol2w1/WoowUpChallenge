@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WoowUpChallenge.Interfaces;
 
 namespace WoowUpChallenge.Models
 {
-    public class RegistroTemas
+    public class RegistroTemas : IRegistroTemas
     {
         public static List<string> temasRegistrados = new List<string>();
 
-        public static void RegistrarTemas(string tema)
+        public void RegistrarTemas(string tema)
         {
             if(!temasRegistrados.Contains(tema))
             {
@@ -18,7 +19,7 @@ namespace WoowUpChallenge.Models
             }    
         }
 
-        public static List<string> ObtenerTemasRegistrados()
+        public List<string> ObtenerTemasRegistrados()
         {
             return temasRegistrados;
         }

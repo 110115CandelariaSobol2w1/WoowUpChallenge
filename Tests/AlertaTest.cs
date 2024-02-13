@@ -19,7 +19,8 @@ namespace Tests
             Usuario usuario2 = new Usuario { Nombre = "Luciano", Email = "luciano@example.com" };
             Usuario usuario3 = new Usuario { Nombre = "Lazaro", Email = "lazaro@example.com" };
 
-            RegistroTemas.RegistrarTemas("Salud");
+            RegistroTemas nuevoTema = new RegistroTemas();
+            nuevoTema.RegistrarTemas("Salud");
 
             usuario1.SeleccionarPreferenciaTema("Salud");
             usuario2.SeleccionarPreferenciaTema("Salud");
@@ -44,7 +45,8 @@ namespace Tests
         public void EnviarAlerta_Should_Send_Alert_To_One_User_With_Correct_Preferences()
         {
             // Arrange
-            RegistroTemas.RegistrarTemas("Salud");
+            RegistroTemas nuevoTema = new RegistroTemas();
+            nuevoTema.RegistrarTemas("Salud");
 
             Usuario destinatarioConPreferencia = new Usuario { Nombre = "Candelaria", Email = "candelaria@example.com" };
             destinatarioConPreferencia.SeleccionarPreferenciaTema("Salud");
@@ -66,7 +68,8 @@ namespace Tests
         public void MarcarComoLeida_Should_Mark_The_Alert_As_Read()
         {
             // Arrange
-            RegistroTemas.RegistrarTemas("Salud");
+            RegistroTemas nuevoTema = new RegistroTemas();
+            nuevoTema.RegistrarTemas("Salud");
 
             Alerta nuevaAlerta = new Alerta("Salud", "Nuevos casos de Covid", TipoAlerta.Urgente, DateTime.Now);
 

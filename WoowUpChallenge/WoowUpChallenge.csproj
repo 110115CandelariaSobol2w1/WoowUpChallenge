@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAlerta.cs" />
+    <Compile Include="Interfaces\IRegistroTemas.cs" />
+    <Compile Include="Interfaces\IUsuario.cs" />
     <Compile Include="Models\Alerta.cs" />
     <Compile Include="Models\RegistroTemas.cs" />
     <Compile Include="Models\Usuario.cs" />

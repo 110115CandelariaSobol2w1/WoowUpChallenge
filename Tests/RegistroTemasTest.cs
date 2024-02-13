@@ -18,10 +18,11 @@ namespace Tests
             string tema = "Salud";
 
             // Act
-            RegistroTemas.RegistrarTemas(tema);
+            RegistroTemas nuevoTema = new RegistroTemas();
+            nuevoTema.RegistrarTemas(tema);
 
             // Assert
-            CollectionAssert.Contains(RegistroTemas.ObtenerTemasRegistrados(), tema);
+            CollectionAssert.Contains(nuevoTema.ObtenerTemasRegistrados(), tema);
 
         }
 
@@ -32,11 +33,12 @@ namespace Tests
             string tema = "TemaExistente";
 
             // Act
-            RegistroTemas.RegistrarTemas(tema);
-            RegistroTemas.RegistrarTemas(tema);
+            RegistroTemas nuevoTema = new RegistroTemas();
+            nuevoTema.RegistrarTemas(tema);
+            nuevoTema.RegistrarTemas(tema);
 
             // Assert
-            Assert.AreEqual(1, RegistroTemas.ObtenerTemasRegistrados().Count(t => t == tema));
+            Assert.AreEqual(1, nuevoTema.ObtenerTemasRegistrados().Count(t => t == tema));
 
         }
     }

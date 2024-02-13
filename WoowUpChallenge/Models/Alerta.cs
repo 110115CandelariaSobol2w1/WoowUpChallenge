@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WoowUpChallenge.Interfaces;
 
 namespace WoowUpChallenge.Models
 
@@ -16,13 +17,13 @@ namespace WoowUpChallenge.Models
         Informativa,
         Urgente
     }
-    public class Alerta
+    public class Alerta : IAlerta
     {
         public string Tema { get; set; }
         public string Mensaje { get; set; }
         public DateTime? FechaExpiracion { get; set; }
         public TipoAlerta Tipo { get; set; }
-        public bool Leida { get; private set; }
+        public bool Leida { get; set; }
         public DateTime FechaCreacion { get; set; }
 
         public static List<Alerta> AlertasEnviadas { get; private set; } = new List<Alerta>();
@@ -37,18 +38,17 @@ namespace WoowUpChallenge.Models
 
             try
             {
-                if (RegistroTemas.ObtenerTemasRegistrados().Contains(tema))
+                RegistroTemas temaAlerta = new RegistroTemas();
+                if (temaAlerta.ObtenerTemasRegistrados().Contains(tema))
                 {
                     Tema = tema;
                 }
-                else
-                {
-                    throw new ArgumentException("el tema no esta registrado");
-                }
+                
             }
-            catch (Exception)
+            catch (ArgumentException ex)
             {
 
+                Console.WriteLine($"Error al crear la alerta: {ex.Message}");
                 throw;
             }
 
@@ -86,7 +86,7 @@ namespace WoowUpChallenge.Models
             return false;
         }
 
-        public static List<Alerta> ObtenerAlertasNoExpiradasPorTema(string tema)
+        public List<Alerta> ObtenerAlertasNoExpiradasPorTema(string tema)
         {
             return AlertasEnviadas
             .Where(alerta => !alerta.Leida && alerta.Tema == tema && (alerta.FechaExpiracion == null || alerta.FechaExpiracion > DateTime.Now))
